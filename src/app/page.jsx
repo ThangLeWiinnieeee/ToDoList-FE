@@ -2,32 +2,16 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuthContext } from '@/contexts/AuthContext';
 
 export default function Home() {
   const router = useRouter();
-  const { isAuthenticated, loading } = useAuthContext();
-
-  React.useEffect(() => {
-    if (!loading && isAuthenticated) {
-      router.replace('/todos');
-    }
-  }, [loading, isAuthenticated, router]);
-
-  if (loading) {
-    return (
-      <main className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
-        <div className="text-gray-500">Checking login session...</div>
-      </main>
-    );
-  }
 
   return (
     <main className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
       <section className="w-full max-w-2xl bg-white border border-gray-200 shadow-sm rounded-2xl p-8 text-center">
         <h1 className="text-3xl font-bold text-gray-900">Todo App</h1>
         <p className="mt-3 text-gray-600">
-          You need to login to manage your personal tasks.
+          Manage your personal tasks efficiently and stay organized.
         </p>
         <div className="mt-6 flex items-center justify-center gap-3">
           <button

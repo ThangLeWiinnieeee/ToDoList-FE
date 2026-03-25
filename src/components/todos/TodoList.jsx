@@ -20,7 +20,7 @@ export default function TodoList({ todos = [], onDelete, onUpdate }) {
   const getTagColor = (tag) => TAG_COLORS[tag?.toLowerCase()] || TAG_COLORS.default;
 
   const handleToggle = (todo) => {
-    onUpdate?.(todo._id, { ...todo, completed: !todo.completed });
+    onUpdate?.(todo._id, { ...todo, isDone: !todo.isDone });
   };
 
   if (!todos.length) {
@@ -34,9 +34,9 @@ export default function TodoList({ todos = [], onDelete, onUpdate }) {
 
   return (
     <ul className="space-y-3">
-      {todos.map((todo) => (
+      {todos.map((todo, index) => (
         <li
-          key={todo._id}
+          key={todo._id || `todo-${index}`}
           className="animate-fade-in-up group flex items-center justify-between p-4 rounded-lg border border-gray-100 hover:border-blue-100 hover:shadow-sm transition-all bg-white"
         >
           <div className="flex items-start gap-4 flex-1">
@@ -44,9 +44,9 @@ export default function TodoList({ todos = [], onDelete, onUpdate }) {
             <button
               onClick={() => handleToggle(todo)}
               className="mt-0.5 transition-colors flex-shrink-0"
-              aria-label={todo.completed ? 'Mark as incomplete' : 'Mark as complete'}
+              aria-label={todo.isDone ? 'Mark as incomplete' : 'Mark as complete'}
             >
-              {todo.completed ? (
+              {todo.isDone ? (
                 <CheckCircle2 className="w-[22px] h-[22px] text-green-500" strokeWidth={2} />
               ) : (
                 <Circle className="w-[22px] h-[22px] text-gray-300 hover:text-blue-500" strokeWidth={2} />
@@ -57,7 +57,7 @@ export default function TodoList({ todos = [], onDelete, onUpdate }) {
             <div className="flex-1 min-w-0">
               <span
                 className={`text-base block transition-colors duration-300 break-words ${
-                  todo.completed
+                  todo.isDone
                     ? 'line-through text-gray-400'
                     : 'text-gray-700 font-medium'
                 }`}

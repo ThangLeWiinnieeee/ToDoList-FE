@@ -56,7 +56,10 @@ axiosClient.interceptors.response.use(
     // ✅ Handle 401 - token expired
     if (error.response?.status === 401) {
       Cookies.remove('token');
-      if (typeof window !== 'undefined') {
+      const isAuthCheck = error.config?.url?.includes('/auth/me');
+      const isLoginPage = typeof window !== 'undefined' && window.location.pathname === '/login';
+
+      if (typeof window !== 'undefined' && !isAuthCheck && !isLoginPage) {
         window.location.href = '/login';
       }
       return Promise.reject({

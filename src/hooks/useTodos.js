@@ -41,7 +41,13 @@ export const useTodos = (options = {}) => {
       setTodos(todosList);
       console.log('✅ Set todos:', todosList);
     } catch (err) {
-      setError(err.message || TODO_MESSAGES.FETCH_FAILED);
+      let errorMessage = err.message || TODO_MESSAGES.FETCH_FAILED;
+      if (err.unauthorized) {
+        errorMessage = 'Your session has expired. Please login again.';
+      } else if (err.rateLimited) {
+        errorMessage = 'Too many requests. Please try again later.';
+      }
+      setError(errorMessage);
       console.error('Fetch todos error:', err);
       setTodos([]); // Fallback to empty array
     } finally {
@@ -66,7 +72,13 @@ export const useTodos = (options = {}) => {
       await fetchTodos();
       return response;
     } catch (err) {
-      setError(err.message || TODO_MESSAGES.CREATE_FAILED);
+      let errorMessage = err.message || TODO_MESSAGES.CREATE_FAILED;
+      if (err.unauthorized) {
+        errorMessage = 'Your session has expired. Please login again.';
+      } else if (err.rateLimited) {
+        errorMessage = 'Too many requests. Please try again later.';
+      }
+      setError(errorMessage);
       console.error('Create todo error:', err);
       throw err;
     } finally {
@@ -77,18 +89,35 @@ export const useTodos = (options = {}) => {
   // Update todo
   const updateTodo = useCallback(
     async (id, payload) => {
+      if (!id) {
+        console.error('Update todo error: ID is undefined');
+        return;
+      }
       try {
         setLoading(true);
         setError(null);
-        const response = await todoService.updateTodo(id, payload);
-        const updatedTodo = response.data?.todo || response.todo || response;
+
+        // Sanitize payload to only include fields allowed by the backend
+        const { title, description, isDone, dueDate, tagIds } = payload;
+        const sanitizedPayload = { title, description, isDone, dueDate, tagIds };
+
+        const response = await todoService.updateTodo(id, sanitizedPayload);
+        const updatedTodo = response.data?.todo || response.todo || response.data || response;
         
-        // Ensure todos is always an array
-        const currentTodos = Array.isArray(todos) ? todos : [];
-        setTodos(currentTodos.map((t) => (t._id === id ? updatedTodo : t)));
+        // Ensure todos is always an array and update the specific todo in state
+        setTodos((prevTodos) => {
+          const currentTodos = Array.isArray(prevTodos) ? prevTodos : [];
+          return currentTodos.map((t) => (t._id === id ? updatedTodo : t));
+        });
         return updatedTodo;
       } catch (err) {
-        setError(err.message || TODO_MESSAGES.UPDATE_FAILED);
+        let errorMessage = err.message || TODO_MESSAGES.UPDATE_FAILED;
+        if (err.unauthorized) {
+          errorMessage = 'Your session has expired. Please login again.';
+        } else if (err.rateLimited) {
+          errorMessage = 'Too many requests. Please try again later.';
+        }
+        setError(errorMessage);
         throw err;
       } finally {
         setLoading(false);
@@ -100,6 +129,10 @@ export const useTodos = (options = {}) => {
   // Delete todo
   const deleteTodo = useCallback(
     async (id) => {
+      if (!id) {
+        console.error('Delete todo error: ID is undefined');
+        return;
+      }
       try {
         setLoading(true);
         setError(null);
@@ -109,7 +142,13 @@ export const useTodos = (options = {}) => {
         const currentTodos = Array.isArray(todos) ? todos : [];
         setTodos(currentTodos.filter((t) => t._id !== id));
       } catch (err) {
-        setError(err.message || TODO_MESSAGES.DELETE_FAILED);
+        let errorMessage = err.message || TODO_MESSAGES.DELETE_FAILED;
+        if (err.unauthorized) {
+          errorMessage = 'Your session has expired. Please login again.';
+        } else if (err.rateLimited) {
+          errorMessage = 'Too many requests. Please try again later.';
+        }
+        setError(errorMessage);
         throw err;
       } finally {
         setLoading(false);

@@ -18,7 +18,11 @@ export default function TodoForm({ onSubmit }) {
 
     try {
       setLoading(true);
-      await onSubmit?.({ title });
+      await onSubmit?.({ 
+        title,
+        description: '',
+        tagIds: [] // Ensure tagIds is an empty array to satisfy backend validation
+      });
       setTitle('');
     } catch (error) {
       console.error('Submit error:', error);
