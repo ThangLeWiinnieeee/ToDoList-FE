@@ -4,7 +4,7 @@ A fully-functional **Todo List Frontend** built with Next.js 14, React, and Tail
 
 ---
 
-## 🚀 Features
+## Features
 
 - **Authentication Flow** - Register, login, logout with cookie-based token storage
 - **Protected Routing** - Middleware-based protection for private pages (for example, /todos)
@@ -16,7 +16,7 @@ A fully-functional **Todo List Frontend** built with Next.js 14, React, and Tail
 
 ---
 
-## 📋 Project Structure
+## Project Structure
 
 ```text
 src/
@@ -40,7 +40,7 @@ src/
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
@@ -54,7 +54,7 @@ src/
 
 ---
 
-## 📦 Installation
+## Installation
 
 ### Prerequisites
 - Node.js (v18 or higher)
@@ -80,7 +80,7 @@ npm run dev
 
 ---
 
-## 🔐 Environment Variables
+## Environment Variables
 
 Create or update `.env.local`:
 
@@ -91,7 +91,7 @@ NODE_ENV=development
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ```bash
 # Run all tests
@@ -106,7 +106,7 @@ npm run test:coverage
 
 ---
 
-## 🔗 Frontend Routes
+## Frontend Routes
 
 ### Public Routes
 ```text
@@ -122,7 +122,7 @@ npm run test:coverage
 
 ---
 
-## 📡 API Integration (Backend)
+## API Integration (Backend)
 
 The frontend is designed to work with the backend API endpoints:
 
@@ -148,7 +148,7 @@ GET    /api/todos/pending
 
 ---
 
-## 📚 Architecture Highlights
+## Architecture Highlights
 
 ### Frontend Data Flow
 
@@ -165,7 +165,7 @@ Page → Component → Hook → Service → Axios Client → Backend API
 
 ---
 
-## 🚦 Running the Application
+## Running the Application
 
 ### Development
 ```bash
@@ -181,7 +181,7 @@ npm run start
 
 ---
 
-## 📝 Available Scripts
+## Available Scripts
 
 ```bash
 npm run dev            # Start Next.js development server
@@ -195,7 +195,7 @@ npm run test:coverage  # Run tests and generate coverage report
 
 ---
 
-## 🐛 Known Limitations
+## Known Limitations
 
 - Route and API contract must stay aligned with backend endpoint naming
 - Dev mode may show duplicate logs due to React Strict Mode behavior
@@ -203,7 +203,7 @@ npm run test:coverage  # Run tests and generate coverage report
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 1. Create a feature branch: `git checkout -b feature/your-feature`
 2. Commit your changes: `git commit -m "Add feature"`
@@ -212,20 +212,20 @@ npm run test:coverage  # Run tests and generate coverage report
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License.
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 **Thang Le**
 GitHub: [@ThangLeWiinnieeee](https://github.com/ThangLeWiinnieeee)
 
 ---
 
-## 📧 Support
+## Support
 
 For questions or issues, please open an issue on GitHub.
 
