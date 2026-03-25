@@ -1,6 +1,6 @@
 /**
  * Button Component
- * Component nút lệnh dùng chung
+ * Common button component
  */
 
 'use client';

@@ -1,6 +1,6 @@
 /**
  * Authentication Service
- * Chứa các hàm API cho xác thực
+ * Contains API functions for authentication
  */
 
 import axiosClient from './axiosClient';
@@ -8,33 +8,33 @@ import { API_ENDPOINTS } from '@/config/urls';
 
 export const authService = {
   /**
-   * Đăng ký tài khoản mới
+   * Register new account
    * @param {Object} payload - { email, password, name }
-   * @returns {Promise} Response từ API
+   * @returns {Promise} Response from API
    */
   register: (payload) => {
     return axiosClient.post(API_ENDPOINTS.AUTH.REGISTER, payload);
   },
 
   /**
-   * Đăng nhập
+   * Login
    * @param {Object} payload - { email, password }
-   * @returns {Promise} Response từ API với token
+   * @returns {Promise} Response from API with token
    */
   login: (payload) => {
     return axiosClient.post(API_ENDPOINTS.AUTH.LOGIN, payload);
   },
 
   /**
-   * Đăng xuất
-   * @returns {Promise} Response từ API
+   * Logout
+   * @returns {Promise} Response from API
    */
   logout: () => {
     return axiosClient.post(API_ENDPOINTS.AUTH.LOGOUT);
   },
 
   /**
-   * Lấy thông tin user hiện tại
+   * Get current user info
    * @returns {Promise} User object
    */
   getCurrentUser: () => {
@@ -42,18 +42,18 @@ export const authService = {
   },
 
   /**
-   * Cập nhật hồ sơ user
+   * Update user profile
    * @param {Object} payload - { name, email, ... }
-   * @returns {Promise} User object đã cập nhật
+   * @returns {Promise} Updated user object
    */
   updateProfile: (payload) => {
     return axiosClient.put(API_ENDPOINTS.AUTH.UPDATE_PROFILE, payload);
   },
 
   /**
-   * Thay đổi mật khẩu
+   * Change password
    * @param {Object} payload - { oldPassword, newPassword }
-   * @returns {Promise} Response từ API
+   * @returns {Promise} Response from API
    */
   changePassword: (payload) => {
     return axiosClient.post(API_ENDPOINTS.AUTH.CHANGE_PASSWORD, payload);

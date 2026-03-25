@@ -1,6 +1,6 @@
 /**
  * TodoList Component
- * Bọc danh sách các TodoItem
+ * Wraps list of TodoItems
  */
 
 'use client';
@@ -26,8 +26,8 @@ export default function TodoList({ todos = [], onDelete, onUpdate }) {
   if (!todos.length) {
     return (
       <div className="text-center py-12 text-gray-400">
-        <p className="text-lg">Không có công việc nào</p>
-        <p className="text-sm mt-1">Hãy thêm một công việc mới để bắt đầu</p>
+        <p className="text-lg">No tasks</p>
+        <p className="text-sm mt-1">Add a new task to get started</p>
       </div>
     );
   }
@@ -82,7 +82,7 @@ export default function TodoList({ todos = [], onDelete, onUpdate }) {
             <button
               onClick={() => onDelete?.(todo._id)}
               className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-md transition-colors"
-              title="Xoá công việc"
+              title="Delete task"
               aria-label="Delete todo"
             >
               <Trash2 className="w-[18px] h-[18px]" strokeWidth={2} />

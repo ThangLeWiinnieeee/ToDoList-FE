@@ -1,6 +1,6 @@
 /**
  * Sidebar Component
- * Thanh menu bên hông (chứa danh sách Tags)
+ * Side menu bar (contains Tag list)
  */
 
 'use client';

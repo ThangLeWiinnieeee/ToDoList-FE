@@ -1,6 +1,6 @@
 /**
  * TodoContext
- * Global context để quản lý trạng thái todos
+ * Global context to manage todos state
  */
 
 'use client';
@@ -11,7 +11,7 @@ import useTodos from '@/hooks/useTodos';
 const TodoContext = createContext();
 
 /**
- * TodoProvider - Bọc ứng dụng để cung cấp todo context
+ * TodoProvider - Wraps application to provide todo context
  */
 export function TodoProvider({ children }) {
   const todos = useTodos();
@@ -24,12 +24,12 @@ export function TodoProvider({ children }) {
 }
 
 /**
- * Hook để sử dụng TodoContext
+ * Hook to use TodoContext
  */
 export function useTodoContext() {
   const context = useContext(TodoContext);
   if (!context) {
-    throw new Error('useTodoContext phải được sử dụng bên trong TodoProvider');
+    throw new Error('useTodoContext must be used within TodoProvider');
   }
   return context;
 }

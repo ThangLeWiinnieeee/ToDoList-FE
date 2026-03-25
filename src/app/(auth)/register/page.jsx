@@ -1,6 +1,6 @@
 /**
  * Register Page
- * Giao diện trang Đăng ký
+ * Register Page UI
  */
 
 'use client';
@@ -20,7 +20,7 @@ export default function RegisterPage() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [localError, setLocalError] = useState('');
 
-  // Redirect nếu đã login
+  // Redirect if already logged in
   useEffect(() => {
     if (user) {
       router.push('/todos');
@@ -32,7 +32,7 @@ export default function RegisterPage() {
     setLocalError('');
     
     if (password !== confirmPassword) {
-      setLocalError('Mật khẩu không khớp');
+      setLocalError('Passwords do not match');
       return;
     }
 
@@ -41,7 +41,7 @@ export default function RegisterPage() {
       // Redirect to login after successful registration
       router.push('/login');
     } catch (err) {
-      setLocalError(err.message || 'Đăng ký thất bại');
+      setLocalError(err.message || 'Registration failed');
       console.error('Register error:', err);
     }
   };
@@ -51,8 +51,8 @@ export default function RegisterPage() {
       <div className="w-full max-w-md space-y-8 bg-white p-8 rounded-xl shadow-md border border-gray-200">
         {/* Header */}
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Đăng Ký</h1>
-          <p className="text-gray-600 text-sm">Tạo tài khoản mới để bắt đầu</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Register</h1>
+          <p className="text-gray-600 text-sm">Create a new account to get started</p>
         </div>
 
         {/* Form */}
@@ -67,14 +67,14 @@ export default function RegisterPage() {
           {/* Name Input */}
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-              Họ và tên
+              Full name
             </label>
             <div className="relative">
               <User className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
               <input
                 id="name"
                 type="text"
-                placeholder="Nguyễn Văn A"
+                placeholder="John Doe"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
@@ -105,7 +105,7 @@ export default function RegisterPage() {
           {/* Password Input */}
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-              Mật khẩu
+              Password
             </label>
             <div className="relative">
               <Lock className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
@@ -124,7 +124,7 @@ export default function RegisterPage() {
           {/* Confirm Password Input */}
           <div>
             <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
-              Xác nhận mật khẩu
+              Confirm password
             </label>
             <div className="relative">
               <Lock className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
@@ -147,16 +147,16 @@ export default function RegisterPage() {
             className="w-full py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 active:bg-blue-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
           >
             {loading && <Loader className="w-4 h-4 animate-spin" />}
-            {loading ? 'Đang đăng ký...' : 'Đăng Ký'}
+            {loading ? 'Registering...' : 'Register'}
           </button>
         </form>
 
         {/* Link to Login */}
         <div className="text-center">
           <p className="text-sm text-gray-600">
-            Đã có tài khoản?{' '}
+            Already have an account?{' '}
             <Link href="/login" className="text-blue-600 hover:text-blue-700 font-medium">
-              Đăng nhập
+              Login
             </Link>
           </p>
         </div>

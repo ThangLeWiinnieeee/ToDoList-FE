@@ -1,6 +1,6 @@
 /**
  * ErrorBoundary Component
- * Bắt lỗi component và hiển thị fallback UI
+ * Catch component errors and display fallback UI
  */
 
 'use client';
@@ -37,8 +37,8 @@ class ErrorBoundary extends React.Component {
             color: 'white',
           }}
         >
-          <h2>Có lỗi xảy ra!</h2>
-          <p>{this.state.error?.message || 'Vui lòng thử lại sau.'}</p>
+          <h2>Something went wrong!</h2>
+          <p>{this.state.error?.message || 'Please try again later.'}</p>
           <button
             onClick={this.handleReset}
             style={{
@@ -51,7 +51,7 @@ class ErrorBoundary extends React.Component {
               marginTop: '10px',
             }}
           >
-            Thử lại
+            Try again
           </button>
         </div>
       );

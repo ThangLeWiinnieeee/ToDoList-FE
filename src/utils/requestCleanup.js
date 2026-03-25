@@ -1,11 +1,11 @@
 /**
  * Request Cleanup Utilities
- * Công cụ để quản lý state requests - reset, clear, timeout
+ * Tools to manage request state - reset, clear, timeout
  */
 
 /**
- * Tạo AbortController cho mỗi request
- * Tự động hủy request sau timeout
+ * Create AbortController for each request
+ * Auto cancel request after timeout
  */
 export const createAbortController = (timeoutMs = 30000) => {
   const controller = new AbortController();
@@ -14,7 +14,7 @@ export const createAbortController = (timeoutMs = 30000) => {
 };
 
 /**
- * Cleanup function - gọi khi component unmount
+ * Cleanup function - call when component unmounts
  */
 export const cleanupRequest = (controller, timeoutId) => {
   if (timeoutId) clearTimeout(timeoutId);
@@ -23,7 +23,7 @@ export const cleanupRequest = (controller, timeoutId) => {
 
 /**
  * Reset state helper
- * Dùng để reset tất cả state liên quan đến request
+ * Used to reset all request-related state
  */
 export const resetRequestState = {
   error: null,
@@ -33,38 +33,38 @@ export const resetRequestState = {
 
 /**
  * Handle error response helper
- * Chuẩn hoá error messages
+ * Standardize error messages
  */
 export const handleErrorResponse = (error) => {
   if (error.name === 'AbortError') {
-    return 'Request bị hủy (timeout hoặc component unmount)';
+    return 'Request cancelled (timeout or component unmount)';
   }
   
   if (error.response?.status === 401) {
-    return 'Phiên đăng nhập hết hạn. Vui lòng đăng nhập lại.';
+    return 'Login session expired. Please login again.';
   }
 
   if (error.response?.status === 400) {
-    return error.response?.data?.message || 'Dữ liệu không hợp lệ';
+    return error.response?.data?.message || 'Invalid data';
   }
 
   if (error.response?.status === 429) {
-    return 'Quá nhiều request. Vui lòng thử lại sau.';
+    return 'Too many requests. Please try again later.';
   }
 
   if (error.response?.status === 500) {
-    return 'Lỗi server. Vui lòng thử lại sau.';
+    return 'Server error. Please try again later.';
   }
 
   if (error.message === 'Network Error') {
-    return 'Lỗi kết nối. Kiểm tra kết nối internet.';
+    return 'Connection error. Check your internet connection.';
   }
 
-  return error.message || 'Có lỗi xảy ra. Vui lòng thử lại.';
+  return error.message || 'Something went wrong. Please try again.';
 };
 
 /**
- * Batch cleanup - dùng khi logout hoặc umount multiple components
+ * Batch cleanup - used when logout or unmount multiple components
  */
 export const batchCleanup = (controllers = []) => {
   controllers.forEach(({ controller, timeoutId }) => {

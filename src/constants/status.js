@@ -1,6 +1,6 @@
 /**
  * Status Constants
- * Quản lý các trạng thái dùng trong ứng dụng
+ * Manage statuses used in the application
  */
 
 export const TODO_STATUS = {

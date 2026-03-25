@@ -1,6 +1,6 @@
 /**
  * useTodos Hook
- * Gọi todo.service, quản lý state danh sách todos, loading, error
+ * Calls todo.service, manages todos list state, loading, error
  */
 
 import { useState, useEffect, useCallback } from 'react';
@@ -8,9 +8,9 @@ import todoService from '@/services/todo.service';
 import { TODO_MESSAGES } from '@/constants/messages';
 
 /**
- * Custom hook để quản lý todos
+ * Custom hook to manage todos
  * @param {Object} options - Configuration options
- * @returns {Object} Todo state và methods
+ * @returns {Object} Todo state and methods
  */
 export const useTodos = (options = {}) => {
   const [todos, setTodos] = useState([]);
@@ -18,7 +18,7 @@ export const useTodos = (options = {}) => {
   const [error, setError] = useState(null);
   const [filter, setFilter] = useState(options.initialFilter || 'all');
 
-  // Lấy danh sách todos
+  // Get todos list
   const fetchTodos = useCallback(async () => {
     try {
       setLoading(true);
@@ -49,12 +49,12 @@ export const useTodos = (options = {}) => {
     }
   }, []);
 
-  // Load todos khi component mount
+  // Load todos when component mounts
   useEffect(() => {
     fetchTodos();
   }, [fetchTodos]);
 
-  // Tạo todo mới
+  // Create new todo
   const createTodo = useCallback(async (payload) => {
     try {
       setLoading(true);
@@ -62,7 +62,7 @@ export const useTodos = (options = {}) => {
       const response = await todoService.createTodo(payload);
       console.log('📝 Create response:', response);
       
-      // Fetch lại danh sách mới (thay vì thêm local)
+      // Re-fetch the new list (instead of adding locally)
       await fetchTodos();
       return response;
     } catch (err) {
@@ -74,7 +74,7 @@ export const useTodos = (options = {}) => {
     }
   }, [fetchTodos]);
 
-  // Cập nhật todo
+  // Update todo
   const updateTodo = useCallback(
     async (id, payload) => {
       try {
@@ -97,7 +97,7 @@ export const useTodos = (options = {}) => {
     [todos]
   );
 
-  // Xóa todo
+  // Delete todo
   const deleteTodo = useCallback(
     async (id) => {
       try {
@@ -118,7 +118,7 @@ export const useTodos = (options = {}) => {
     [todos]
   );
 
-  // Filter todos theo status
+  // Filter todos by status
   const getFilteredTodos = useCallback(() => {
     const currentTodos = Array.isArray(todos) ? todos : [];
     if (filter === 'completed') {

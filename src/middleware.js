@@ -4,18 +4,18 @@ export function middleware(request) {
   const token = request.cookies.get('token')?.value;
   const { pathname } = request.nextUrl;
 
-  // Public routes (không cần auth)
+  // Public routes (no auth required)
   const publicRoutes = ['/login', '/register', '/'];
 
-  // Protected routes (cần auth)
+  // Protected routes (requires auth)
   const protectedRoutes = ['/todos'];
 
-  // Nếu user có token và đang ở trang auth → redirect đến /todos
+  // If user has token and is on auth page → redirect to /todos
   if (token && (pathname === '/login' || pathname === '/register')) {
     return NextResponse.redirect(new URL('/todos', request.url));
   }
 
-  // Nếu user không có token và đang ở protected route → redirect đến /login
+  // If user has no token and is on protected route → redirect to /login
   if (!token && protectedRoutes.some(route => pathname.startsWith(route))) {
     return NextResponse.redirect(new URL('/login', request.url));
   }

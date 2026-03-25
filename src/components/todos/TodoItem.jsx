@@ -1,6 +1,6 @@
 /**
  * TodoItem Component
- * Từng dòng công việc (có checkbox, title, nút xóa)
+ * Individual task row (with checkbox, title, delete button)
  */
 
 'use client';
@@ -47,7 +47,7 @@ export default function TodoItem({ todo, onDelete, onUpdate }) {
           cursor: 'pointer',
         }}
       >
-        Xóa
+        Delete
       </button>
     </div>
   );

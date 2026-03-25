@@ -1,6 +1,6 @@
 /**
  * Theme Configuration
- * Quản lý theme colors, typography, spacing, etc.
+ * Manage theme colors, typography, spacing, etc.
  */
 
 export const THEME = {

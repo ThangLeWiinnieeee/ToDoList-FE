@@ -1,6 +1,6 @@
 /**
  * Root Layout
- * Layout gốc cho toàn app (chứa html, body, Providers)
+ * Root layout for entire app (contains html, body, Providers)
  */
 
 import './globals.css';

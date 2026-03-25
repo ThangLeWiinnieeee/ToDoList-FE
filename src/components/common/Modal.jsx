@@ -1,6 +1,6 @@
 /**
  * Modal Component
- * Component modal dùng chung
+ * Common modal component
  */
 
 'use client';

@@ -1,6 +1,6 @@
 /**
  * Tag Service
- * Chứa các hàm API cho quản lý tags
+ * Contains API functions for tag management
  */
 
 import axiosClient from './axiosClient';
@@ -8,7 +8,7 @@ import { API_ENDPOINTS } from '@/config/urls';
 
 export const tagService = {
   /**
-   * Lấy danh sách tất cả tags
+   * Get all tags list
    * @returns {Promise} Array of tags
    */
   getTags: () => {
@@ -16,7 +16,7 @@ export const tagService = {
   },
 
   /**
-   * Lấy tag theo ID
+   * Get tag by ID
    * @param {string} id - Tag ID
    * @returns {Promise} Tag object
    */
@@ -25,28 +25,28 @@ export const tagService = {
   },
 
   /**
-   * Tạo tag mới
+   * Create new tag
    * @param {Object} payload - { name, color }
-   * @returns {Promise} Tag object mới được tạo
+   * @returns {Promise} Newly created tag object
    */
   createTag: (payload) => {
     return axiosClient.post(API_ENDPOINTS.TAGS.CREATE, payload);
   },
 
   /**
-   * Cập nhật tag
+   * Update tag
    * @param {string} id - Tag ID
    * @param {Object} payload - { name, color }
-   * @returns {Promise} Tag object đã cập nhật
+   * @returns {Promise} Updated tag object
    */
   updateTag: (id, payload) => {
     return axiosClient.put(API_ENDPOINTS.TAGS.UPDATE(id), payload);
   },
 
   /**
-   * Xóa tag
+   * Delete tag
    * @param {string} id - Tag ID
-   * @returns {Promise} Response từ API
+   * @returns {Promise} Response from API
    */
   deleteTag: (id) => {
     return axiosClient.delete(API_ENDPOINTS.TAGS.DELETE(id));

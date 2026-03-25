@@ -1,55 +1,55 @@
 /**
  * User-facing Messages
- * Các thông báo gửi đến người dùng
+ * Messages sent to users
  */
 
 export const AUTH_MESSAGES = {
-  REGISTER_SUCCESS: 'Đăng ký thành công! Vui lòng đăng nhập.',
-  LOGIN_SUCCESS: 'Đăng nhập thành công!',
-  LOGOUT_SUCCESS: 'Đăng xuất thành công!',
-  LOGIN_FAILED: 'Email hoặc mật khẩu không đúng.',
-  REGISTER_FAILED: 'Đăng ký thất bại. Vui lòng thử lại.',
-  PASSWORD_CHANGED: 'Mật khẩu đã được thay đổi.',
-  PASSWORD_CHANGE_FAILED: 'Thay đổi mật khẩu thất bại.',
-  PROFILE_UPDATED: 'Cập nhật tài khoản thành công!',
-  PROFILE_UPDATE_FAILED: 'Cập nhật tài khoản thất bại.',
-  UNAUTHORIZED: 'Bạn cần đăng nhập để tiếp tục.',
-  SESSION_EXPIRED: 'Phiên làm việc đã hết hạn. Vui lòng đăng nhập lại.',
+  REGISTER_SUCCESS: 'Registration successful! Please login.',
+  LOGIN_SUCCESS: 'Login successful!',
+  LOGOUT_SUCCESS: 'Logout successful!',
+  LOGIN_FAILED: 'Invalid email or password.',
+  REGISTER_FAILED: 'Registration failed. Please try again.',
+  PASSWORD_CHANGED: 'Password has been changed.',
+  PASSWORD_CHANGE_FAILED: 'Password change failed.',
+  PROFILE_UPDATED: 'Profile updated successfully!',
+  PROFILE_UPDATE_FAILED: 'Profile update failed.',
+  UNAUTHORIZED: 'You need to login to continue.',
+  SESSION_EXPIRED: 'Session expired. Please login again.',
 };
 
 export const TODO_MESSAGES = {
-  CREATE_SUCCESS: 'Tạo công việc thành công!',
-  CREATE_FAILED: 'Tạo công việc thất bại.',
-  UPDATE_SUCCESS: 'Cập nhật công việc thành công!',
-  UPDATE_FAILED: 'Cập nhật công việc thất bại.',
-  DELETE_SUCCESS: 'Xóa công việc thành công!',
-  DELETE_FAILED: 'Xóa công việc thất bại.',
-  FETCH_FAILED: 'Không thể tải danh sách công việc.',
-  EMPTY_TITLE: 'Vui lòng nhập tiêu đề công việc.',
+  CREATE_SUCCESS: 'Task created successfully!',
+  CREATE_FAILED: 'Failed to create task.',
+  UPDATE_SUCCESS: 'Task updated successfully!',
+  UPDATE_FAILED: 'Failed to update task.',
+  DELETE_SUCCESS: 'Task deleted successfully!',
+  DELETE_FAILED: 'Failed to delete task.',
+  FETCH_FAILED: 'Unable to load task list.',
+  EMPTY_TITLE: 'Please enter a task title.',
 };
 
 export const TAG_MESSAGES = {
-  CREATE_SUCCESS: 'Tạo thẻ thành công!',
-  CREATE_FAILED: 'Tạo thẻ thất bại.',
-  UPDATE_SUCCESS: 'Cập nhật thẻ thành công!',
-  UPDATE_FAILED: 'Cập nhật thẻ thất bại.',
-  DELETE_SUCCESS: 'Xóa thẻ thành công!',
-  DELETE_FAILED: 'Xóa thẻ thất bại.',
-  FETCH_FAILED: 'Không thể tải danh sách thẻ.',
+  CREATE_SUCCESS: 'Tag created successfully!',
+  CREATE_FAILED: 'Failed to create tag.',
+  UPDATE_SUCCESS: 'Tag updated successfully!',
+  UPDATE_FAILED: 'Failed to update tag.',
+  DELETE_SUCCESS: 'Tag deleted successfully!',
+  DELETE_FAILED: 'Failed to delete tag.',
+  FETCH_FAILED: 'Unable to load tag list.',
 };
 
 export const VALIDATION_MESSAGES = {
-  REQUIRED_FIELD: 'Trường này là bắt buộc.',
-  INVALID_EMAIL: 'Email không hợp lệ.',
-  PASSWORD_TOO_SHORT: 'Mật khẩu phải có ít nhất 6 ký tự.',
-  PASSWORD_MISMATCH: 'Mật khẩu không khớp.',
-  MIN_LENGTH: (field, min) => `${field} phải có ít nhất ${min} ký tự.`,
-  MAX_LENGTH: (field, max) => `${field} không được vượt quá ${max} ký tự.`,
+  REQUIRED_FIELD: 'This field is required.',
+  INVALID_EMAIL: 'Invalid email.',
+  PASSWORD_TOO_SHORT: 'Password must be at least 6 characters.',
+  PASSWORD_MISMATCH: 'Passwords do not match.',
+  MIN_LENGTH: (field, min) => `${field} must be at least ${min} characters.`,
+  MAX_LENGTH: (field, max) => `${field} must not exceed ${max} characters.`,
 };
 
 export const ERROR_MESSAGES = {
-  NETWORK_ERROR: 'Lỗi kết nối. Vui lòng kiểm tra kết nối Internet.',
-  SERVER_ERROR: 'Lỗi server. Vui lòng thử lại sau.',
-  SOMETHING_WRONG: 'Có lỗi xảy ra. Vui lòng thử lại.',
-  NOT_FOUND: 'Không tìm thấy tài nguyên.',
+  NETWORK_ERROR: 'Connection error. Please check your Internet connection.',
+  SERVER_ERROR: 'Server error. Please try again later.',
+  SOMETHING_WRONG: 'Something went wrong. Please try again.',
+  NOT_FOUND: 'Resource not found.',
 };

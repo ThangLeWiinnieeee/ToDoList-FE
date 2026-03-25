@@ -1,6 +1,6 @@
 /**
  * Header Component
- * Thanh điều hướng trên cùng
+ * Top navigation bar
  */
 
 'use client';
@@ -37,10 +37,10 @@ export default function Header() {
             {user && (
               <>
                 <Link href="/" className="text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium">
-                  Trang chủ
+                  Home
                 </Link>
                 <Link href="/todos" className="text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium">
-                  Công việc
+                  Tasks
                 </Link>
               </>
             )}
@@ -71,7 +71,7 @@ export default function Header() {
                       className="w-full text-left px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 flex items-center gap-2 transition-colors"
                     >
                       <LogOut className="w-4 h-4" />
-                      Đăng xuất
+                      Logout
                     </button>
                   </div>
                 )}
@@ -82,7 +82,7 @@ export default function Header() {
                 onClick={() => router.push('/login')}
                 className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
               >
-                Đăng nhập
+                Login
               </button>
             )}
           </div>

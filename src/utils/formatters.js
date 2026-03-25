@@ -1,13 +1,13 @@
 /**
  * Utility Functions - Formatters
- * Các hàm định dạng dữ liệu dùng chung
+ * Common data formatting functions
  */
 
 /**
- * Format ngày tháng thành chuỗi dễ đọc
- * @param {Date|string} date - Ngày cần format
- * @param {string} format - Định dạng mong muốn (default: 'DD/MM/YYYY')
- * @returns {string} Ngày đã format
+ * Format date to readable string
+ * @param {Date|string} date - Date to format
+ * @param {string} format - Desired format (default: 'DD/MM/YYYY')
+ * @returns {string} Formatted date
  */
 export const formatDate = (date, format = 'DD/MM/YYYY') => {
   if (!date) return '';
@@ -26,13 +26,13 @@ export const formatDate = (date, format = 'DD/MM/YYYY') => {
     return `${year}-${month}-${day}`;
   }
   
-  return dateObj.toLocaleDateString('vi-VN');
+  return dateObj.toLocaleDateString('en-US');
 };
 
 /**
- * Format thời gian tương đối (e.g., "2 hours ago")
- * @param {Date|string} date - Ngày cần format
- * @returns {string} Thời gian tương đối
+ * Format relative time (e.g., "2 hours ago")
+ * @param {Date|string} date - Date to format
+ * @returns {string} Relative time
  */
 export const formatTimeAgo = (date) => {
   if (!date) return '';
@@ -41,19 +41,19 @@ export const formatTimeAgo = (date) => {
   const now = new Date();
   const secondsAgo = Math.floor((now - dateObj) / 1000);
   
-  if (secondsAgo < 60) return 'Vừa xong';
-  if (secondsAgo < 3600) return `${Math.floor(secondsAgo / 60)} phút trước`;
-  if (secondsAgo < 86400) return `${Math.floor(secondsAgo / 3600)} giờ trước`;
-  if (secondsAgo < 604800) return `${Math.floor(secondsAgo / 86400)} ngày trước`;
+  if (secondsAgo < 60) return 'Just now';
+  if (secondsAgo < 3600) return `${Math.floor(secondsAgo / 60)} minutes ago`;
+  if (secondsAgo < 86400) return `${Math.floor(secondsAgo / 3600)} hours ago`;
+  if (secondsAgo < 604800) return `${Math.floor(secondsAgo / 86400)} days ago`;
   
   return formatDate(dateObj);
 };
 
 /**
- * Cắt ngắn chuỗi và thêm "..."
- * @param {string} str - Chuỗi cần cắt
- * @param {number} maxLength - Độ dài tối đa
- * @returns {string} Chuỗi đã cắt
+ * Truncate string and add "..."
+ * @param {string} str - String to truncate
+ * @param {number} maxLength - Maximum length
+ * @returns {string} Truncated string
  */
 export const truncateString = (str, maxLength = 50) => {
   if (!str) return '';
@@ -62,22 +62,22 @@ export const truncateString = (str, maxLength = 50) => {
 };
 
 /**
- * Format số tiền thành chuỗi dễ đọc
- * @param {number} amount - Số tiền
- * @param {string} currency - Loại tiền (default: 'VND')
- * @returns {string} Số tiền đã format
+ * Format amount to readable currency string
+ * @param {number} amount - Amount
+ * @param {string} currency - Currency type (default: 'USD')
+ * @returns {string} Formatted amount
  */
 export const formatCurrency = (amount, currency = 'VND') => {
-  return new Intl.NumberFormat('vi-VN', {
+  return new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency,
   }).format(amount);
 };
 
 /**
- * Capitalize chữ cái đầu
- * @param {string} str - Chuỗi cần capitalize
- * @returns {string} Chuỗi đã capitalize
+ * Capitalize first letter
+ * @param {string} str - String to capitalize
+ * @returns {string} Capitalized string
  */
 export const capitalize = (str) => {
   if (!str) return '';
@@ -85,8 +85,8 @@ export const capitalize = (str) => {
 };
 
 /**
- * Chuyển đổi string thành slug cho URL
- * @param {string} str - Chuỗi cần chuyển
+ * Convert string to URL slug
+ * @param {string} str - String to convert
  * @returns {string} Slug
  */
 export const toSlug = (str) => {

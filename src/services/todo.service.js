@@ -1,6 +1,6 @@
 /**
  * Todo Service
- * Chứa các hàm API cho quản lý todos
+ * Contains API functions for todo management
  */
 
 import axiosClient from './axiosClient';
@@ -8,7 +8,7 @@ import { API_ENDPOINTS } from '@/config/urls';
 
 export const todoService = {
   /**
-   * Lấy danh sách tất cả todos
+   * Get all todos list
    * @returns {Promise} Array of todos
    */
   getTodos: () => {
@@ -16,7 +16,7 @@ export const todoService = {
   },
 
   /**
-   * Lấy todo theo ID
+   * Get todo by ID
    * @param {string} id - Todo ID
    * @returns {Promise} Todo object
    */
@@ -25,35 +25,35 @@ export const todoService = {
   },
 
   /**
-   * Tạo todo mới
+   * Create new todo
    * @param {Object} payload - { title, description, dueDate, tags }
-   * @returns {Promise} Todo object mới được tạo
+   * @returns {Promise} Newly created todo object
    */
   createTodo: (payload) => {
     return axiosClient.post(API_ENDPOINTS.TODOS.CREATE, payload);
   },
 
   /**
-   * Cập nhật todo
+   * Update todo
    * @param {string} id - Todo ID
    * @param {Object} payload - { title, description, isDone, dueDate, tags }
-   * @returns {Promise} Todo object đã cập nhật
+   * @returns {Promise} Updated todo object
    */
   updateTodo: (id, payload) => {
     return axiosClient.put(API_ENDPOINTS.TODOS.UPDATE(id), payload);
   },
 
   /**
-   * Xóa todo (soft delete)
+   * Delete todo (soft delete)
    * @param {string} id - Todo ID
-   * @returns {Promise} Response từ API
+   * @returns {Promise} Response from API
    */
   deleteTodo: (id) => {
     return axiosClient.delete(API_ENDPOINTS.TODOS.DELETE(id));
   },
 
   /**
-   * Lấy danh sách todos đã hoàn thành
+   * Get completed todos list
    * @returns {Promise} Array of completed todos
    */
   getCompletedTodos: () => {

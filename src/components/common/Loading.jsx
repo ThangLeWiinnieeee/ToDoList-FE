@@ -1,6 +1,6 @@
 /**
  * Loading Component
- * Component hiển thị loading state
+ * Loading state display component
  */
 
 'use client';
@@ -8,7 +8,7 @@
 import React from 'react';
 import THEME from '@/styles/theme';
 
-export default function Loading({ fullScreen = false, message = 'Đang tải...' }) {
+export default function Loading({ fullScreen = false, message = 'Loading...' }) {
   const container = {
     display: 'flex',
     flexDirection: 'column',

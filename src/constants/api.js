@@ -26,14 +26,14 @@ export const API_ERROR_CODES = {
 };
 
 export const ERROR_CODE_MESSAGES = {
-  [API_ERROR_CODES.INVALID_CREDENTIALS]: 'Email hoặc mật khẩu không đúng.',
-  [API_ERROR_CODES.USER_NOT_FOUND]: 'Người dùng không được tìm thấy.',
-  [API_ERROR_CODES.EMAIL_ALREADY_EXISTS]: 'Email đã được sử dụng.',
-  [API_ERROR_CODES.UNAUTHORIZED]: 'Bạn cần đăng nhập.',
-  [API_ERROR_CODES.FORBIDDEN]: 'Bạn không có quyền thực hiện hành động này.',
-  [API_ERROR_CODES.TODO_NOT_FOUND]: 'Công việc không được tìm thấy.',
-  [API_ERROR_CODES.TAG_NOT_FOUND]: 'Thẻ không được tìm thấy.',
-  [API_ERROR_CODES.VALIDATION_ERROR]: 'Dữ liệu không hợp lệ.',
-  [API_ERROR_CODES.INTERNAL_ERROR]: 'Lỗi server nội bộ.',
-  [API_ERROR_CODES.SERVICE_UNAVAILABLE]: 'Dịch vụ tạm thời không khả dụng.',
+  [API_ERROR_CODES.INVALID_CREDENTIALS]: 'Invalid email or password.',
+  [API_ERROR_CODES.USER_NOT_FOUND]: 'User not found.',
+  [API_ERROR_CODES.EMAIL_ALREADY_EXISTS]: 'Email already in use.',
+  [API_ERROR_CODES.UNAUTHORIZED]: 'You need to login.',
+  [API_ERROR_CODES.FORBIDDEN]: 'You do not have permission to perform this action.',
+  [API_ERROR_CODES.TODO_NOT_FOUND]: 'Task not found.',
+  [API_ERROR_CODES.TAG_NOT_FOUND]: 'Tag not found.',
+  [API_ERROR_CODES.VALIDATION_ERROR]: 'Invalid data.',
+  [API_ERROR_CODES.INTERNAL_ERROR]: 'Internal server error.',
+  [API_ERROR_CODES.SERVICE_UNAVAILABLE]: 'Service temporarily unavailable.',
 };

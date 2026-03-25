@@ -1,6 +1,6 @@
 /**
  * AuthContext
- * Global context để quản lý trạng thái xác thực
+ * Global context to manage authentication state
  */
 
 'use client';
@@ -11,7 +11,7 @@ import { useAuth } from '@/hooks/useAuth';
 const AuthContext = createContext();
 
 /**
- * AuthProvider - Bọc ứng dụng để cung cấp auth context
+ * AuthProvider - Wraps application to provide auth context
  */
 export function AuthProvider({ children }) {
   const auth = useAuth();
@@ -24,12 +24,12 @@ export function AuthProvider({ children }) {
 }
 
 /**
- * Hook để sử dụng AuthContext
+ * Hook to use AuthContext
  */
 export function useAuthContext() {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('useAuthContext phải được sử dụng bên trong AuthProvider');
+    throw new Error('useAuthContext must be used within AuthProvider');
   }
   return context;
 }

@@ -1,6 +1,6 @@
 /**
  * Axios Client Configuration
- * Cấu hình Axios + Interceptors (Tự động gắn Token, xử lý error)
+ * Axios configuration + Interceptors (Auto attach Token, error handling)
  */
 
 import axios from 'axios';
@@ -8,16 +8,16 @@ import Cookies from 'js-cookie';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
 
-// Tạo axios instance
+// Create axios instance
 const axiosClient = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 30000, // ✅ Timeout 30s - tránh request hang
+  timeout: 30000, // ✅ Timeout 30s - prevent request hang
 });
 
-// Request Interceptor - Gắn token vào header
+// Request Interceptor - Attach token to header
 axiosClient.interceptors.request.use(
   (config) => {
     const token = Cookies.get('token');
@@ -31,7 +31,7 @@ axiosClient.interceptors.request.use(
   }
 );
 
-// Response Interceptor - Xử lý error & token hết hạn
+// Response Interceptor - Handle error & expired token
 axiosClient.interceptors.response.use(
   (response) => {
     return response.data;
@@ -40,7 +40,7 @@ axiosClient.interceptors.response.use(
     // ✅ Handle timeout
     if (error.code === 'ECONNABORTED') {
       return Promise.reject({
-        message: 'Request timeout. Vui lòng thử lại.',
+        message: 'Request timeout. Please try again.',
         timeout: true,
       });
     }
@@ -48,7 +48,7 @@ axiosClient.interceptors.response.use(
     // ✅ Handle abort (user cancel)
     if (error.name === 'AbortError') {
       return Promise.reject({
-        message: 'Request bị hủy',
+        message: 'Request cancelled',
         aborted: true,
       });
     }
@@ -60,7 +60,7 @@ axiosClient.interceptors.response.use(
         window.location.href = '/login';
       }
       return Promise.reject({
-        message: 'Phiên đăng nhập hết hạn',
+        message: 'Login session expired',
         unauthorized: true,
       });
     }
@@ -68,7 +68,7 @@ axiosClient.interceptors.response.use(
     // ✅ Handle 429 - rate limit
     if (error.response?.status === 429) {
       return Promise.reject({
-        message: 'Quá nhiều request. Vui lòng thử lại sau.',
+        message: 'Too many requests. Please try again later.',
         rateLimited: true,
       });
     }

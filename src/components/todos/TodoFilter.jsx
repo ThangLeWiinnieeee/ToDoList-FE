@@ -1,6 +1,6 @@
 /**
  * TodoFilter Component
- * Bộ lọc (All, Completed, Pending...)
+ * Filter (All, Completed, Pending...)
  */
 
 'use client';
@@ -8,9 +8,9 @@
 import React from 'react';
 
 const FILTER_OPTIONS = [
-  { value: 'all', label: 'Tất cả' },
-  { value: 'completed', label: 'Hoàn thành' },
-  { value: 'pending', label: 'Chưa hoàn thành' },
+  { value: 'all', label: 'All' },
+  { value: 'completed', label: 'Completed' },
+  { value: 'pending', label: 'Pending' },
 ];
 
 export default function TodoFilter({ activeFilter, onChange }) {

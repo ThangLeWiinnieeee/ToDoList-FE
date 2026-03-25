@@ -1,6 +1,6 @@
 /**
  * Login Page
- * Giao diện trang Đăng nhập
+ * Login Page UI
  */
 
 'use client';
@@ -18,7 +18,7 @@ export default function LoginPage() {
   try {
     contextData = useAuthContext();
   } catch (contextErr) {
-    return <div className="text-red-500">Lỗi: {contextErr.message}</div>;
+    return <div className="text-red-500">Error: {contextErr.message}</div>;
   }
 
   const { user, login, loading, error } = contextData;
@@ -27,7 +27,7 @@ export default function LoginPage() {
   const [localError, setLocalError] = useState('');
   const hasRedirected = useRef(false);
 
-  // Redirect nếu đã login
+  // Redirect if already logged in
   useEffect(() => {
     if (user && !hasRedirected.current) {
       hasRedirected.current = true;
@@ -42,10 +42,10 @@ export default function LoginPage() {
     try {
       const result = await login(email, password);
       console.log('Login successful:', result);
-      // Router.push sẽ được gọi từ useEffect khi user thay đổi
+      // Router.push will be called from useEffect when user changes
     } catch (err) {
       console.error('Login error:', err);
-      setLocalError(err.message || 'Đăng nhập thất bại');
+      setLocalError(err.message || 'Login failed');
     }
   };
 
@@ -54,8 +54,8 @@ export default function LoginPage() {
       <div className="w-full max-w-md space-y-8 bg-white p-8 rounded-xl shadow-md border border-gray-200">
         {/* Header */}
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Đăng Nhập</h1>
-          <p className="text-gray-600 text-sm">Quay lại với công việc của bạn</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Login</h1>
+          <p className="text-gray-600 text-sm">Welcome back to your tasks</p>
         </div>
 
         {/* Form */}
@@ -89,7 +89,7 @@ export default function LoginPage() {
           {/* Password Input */}
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-              Mật khẩu
+              Password
             </label>
             <div className="relative">
               <Lock className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
@@ -116,16 +116,16 @@ export default function LoginPage() {
             className="w-full py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 active:bg-blue-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
           >
             {loading && <Loader className="w-4 h-4 animate-spin" />}
-            {loading ? 'Đang đăng nhập...' : 'Đăng Nhập'}
+            {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
 
         {/* Link to Register */}
         <div className="text-center">
           <p className="text-sm text-gray-600">
-            Chưa có tài khoản?{' '}
+            Don't have an account?{' '}
             <Link href="/register" className="text-blue-600 hover:text-blue-700 font-medium">
-              Đăng ký ngay
+              Register now
             </Link>
           </p>
         </div>

@@ -1,6 +1,6 @@
 /**
  * TodoForm Component
- * Form thêm công việc mới
+ * Form to add new task
  */
 
 'use client';
@@ -31,7 +31,7 @@ export default function TodoForm({ onSubmit }) {
     <form onSubmit={handleSubmit} className="relative">
       <input
         type="text"
-        placeholder="Thêm công việc mới..."
+        placeholder="Add new task..."
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         disabled={loading}
@@ -41,7 +41,7 @@ export default function TodoForm({ onSubmit }) {
         type="submit"
         disabled={loading}
         className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-        title={loading ? 'Đang thêm...' : 'Thêm công việc'}
+        title={loading ? 'Adding...' : 'Add task'}
       >
         <Plus className="w-5 h-5" strokeWidth={3} />
       </button>

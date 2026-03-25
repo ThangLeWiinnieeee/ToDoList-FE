@@ -1,6 +1,6 @@
 /**
  * useAuth Hook
- * Quản lý trạng thái đăng nhập, lưu token, logout
+ * Manages login state, stores token, logout
  */
 
 import { useState, useEffect, useCallback, useContext } from 'react';
@@ -9,8 +9,8 @@ import authService from '@/services/auth.service';
 import { AUTH_MESSAGES } from '@/constants/messages';
 
 /**
- * Custom hook để quản lý authentication
- * @returns {Object} Auth state và methods
+ * Custom hook to manage authentication
+ * @returns {Object} Auth state and methods
  */
 export const useAuth = () => {
   const [user, setUser] = useState(null);
@@ -18,7 +18,7 @@ export const useAuth = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Kiểm tra token khi component mount
+  // Check token when component mounts
   useEffect(() => {
     const checkAuth = async () => {
       try {
@@ -26,7 +26,7 @@ export const useAuth = () => {
         console.log('🔑 Token in cookies:', token ? 'Yes' : 'No');
         
         if (token) {
-          // Lấy thông tin user từ API
+          // Get user info from API
           const response = await authService.getCurrentUser();
           console.log('✅ getCurrentUser success:', response);
           setUser(response.data || response);
@@ -37,14 +37,14 @@ export const useAuth = () => {
         }
       } catch (err) {
         console.error('❌ Auth check failed:', err);
-        // Không xóa token ngay, có thể là network error
-        // Chỉ xóa nếu là 401 (unauthorized)
+        // Don't delete token immediately, could be network error
+        // Only delete if 401 (unauthorized)
         if (err.response?.status === 401) {
           console.log('🔓 Token invalid, removing...');
           Cookies.remove('token');
           setIsAuthenticated(false);
         }
-        // Khác - giữ token, sau này lại thử
+        // Others - keep token, retry later
       } finally {
         setLoading(false);
       }
@@ -53,14 +53,14 @@ export const useAuth = () => {
     checkAuth();
   }, []);
 
-  // Đăng nhập
+  // Login
   const login = useCallback(async (email, password) => {
     try {
       setLoading(true);
       setError(null);
       const response = await authService.login({ email, password });
       
-      // Lưu token vào cookies - response.data chứa { user, token }
+      // Save token to cookies - response.data contains { user, token }
       const token = response.data?.token || response.token;
       Cookies.set('token', token, { expires: 7 });
       
@@ -77,7 +77,7 @@ export const useAuth = () => {
     }
   }, []);
 
-  // Đăng ký
+  // Register
   const register = useCallback(async (email, password, name) => {
     try {
       setLoading(true);
@@ -93,7 +93,7 @@ export const useAuth = () => {
     }
   }, []);
 
-  // Đăng xuất
+  // Logout
   const logout = useCallback(async () => {
     try {
       await authService.logout();
@@ -106,7 +106,7 @@ export const useAuth = () => {
     }
   }, []);
 
-  // Cập nhật hồ sơ
+  // Update profile
   const updateProfile = useCallback(async (payload) => {
     try {
       setLoading(true);
