@@ -39,7 +39,6 @@ export const useTodos = (options = {}) => {
       }
       
       setTodos(todosList);
-      console.log('✅ Set todos:', todosList);
     } catch (err) {
       let errorMessage = err.message || TODO_MESSAGES.FETCH_FAILED;
       if (err.unauthorized) {
