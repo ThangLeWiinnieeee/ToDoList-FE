@@ -24,8 +24,7 @@ export const useTodos = (options = {}) => {
       setLoading(true);
       setError(null);
       const response = await todoService.getTodos();
-      console.log('📋 fetchTodos response:', response);
-      
+
       // Handle different response formats
       let todosList = [];
       if (Array.isArray(response)) {
@@ -65,8 +64,7 @@ export const useTodos = (options = {}) => {
       setLoading(true);
       setError(null);
       const response = await todoService.createTodo(payload);
-      console.log('📝 Create response:', response);
-      
+
       // Re-fetch the new list (instead of adding locally)
       await fetchTodos();
       return response;
@@ -96,9 +94,13 @@ export const useTodos = (options = {}) => {
         setLoading(true);
         setError(null);
 
-        // Sanitize payload to only include fields allowed by the backend
+        // Sanitize payload to only include fields allowed by the backend.
+        // tagIds may arrive as populated objects (from a toggled todo) -> send only ids.
         const { title, description, isDone, dueDate, tagIds } = payload;
-        const sanitizedPayload = { title, description, isDone, dueDate, tagIds };
+        const sanitizedPayload = { title, description, isDone, dueDate };
+        if (tagIds !== undefined) {
+          sanitizedPayload.tagIds = tagIds.map((t) => (typeof t === 'string' ? t : t?._id)).filter(Boolean);
+        }
 
         const response = await todoService.updateTodo(id, sanitizedPayload);
         const updatedTodo = response.data?.todo || response.todo || response.data || response;
